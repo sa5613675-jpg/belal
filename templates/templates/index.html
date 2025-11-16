@@ -1,62 +1,233 @@
 {% extends "base.html" %}
 
-{% block title %}GS Student Nursing Center by Golam Sarowar Sir - Mathematics & Science Coaching Center{% endblock %}
+{% block title %}Chemistry and ICT Care by Belal Sir - Expert Coaching Center{% endblock %}
+
+{% block extra_head %}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+    }
+    
+    .course-card {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .course-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.5s;
+    }
+    
+    .course-card:hover::before {
+        left: 100%;
+    }
+    
+    .course-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+    
+    .feature-card {
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    .float-animation {
+        animation: float 3s ease-in-out infinite;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+<div class="min-h-screen bg-gradient-to-br from-blue-800 via-blue-900 to-indigo-900">
     <!-- Hero Section -->
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Service Icons Row -->
-        <div class="flex justify-center mb-12">
-            <div class="bg-white rounded-2xl p-4 shadow-xl">
-                <div class="flex space-x-4">
-                    <div class="bg-blue-600 p-4 rounded-xl">
-                        <i class="fas fa-book text-white text-xl"></i>
-                    </div>
-                    <div class="bg-green-600 p-4 rounded-xl">
-                        <i class="fas fa-users text-white text-xl"></i>
-                    </div>
-                    <div class="bg-orange-600 p-4 rounded-xl">
-                        <i class="fas fa-clock text-white text-xl"></i>
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        
+        <!-- Main Icon with Modern Gradient -->
+        <div class="flex justify-center mb-8">
+            <div class="relative float-animation">
+                <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-40"></div>
+                <div class="relative bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 rounded-3xl p-10 shadow-2xl">
+                    <div class="flex items-center justify-center gap-6">
+                        <i class="fas fa-flask text-white text-5xl drop-shadow-lg"></i>
+                        <i class="fas fa-laptop-code text-white text-5xl drop-shadow-lg"></i>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Main Title -->
-        <div class="text-center text-white mb-16">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">GS Student Nursing Center</h1>
-            <h2 class="text-2xl md:text-3xl font-semibold text-yellow-300 mb-4">by Golam Sarowar Sir</h2>
-            <p class="text-lg text-blue-300">Excellence in Mathematics & Science Education for students from class 6 to 10.</p>
+        <div class="text-center text-white mb-12">
+            <h1 class="text-5xl md:text-6xl font-black mb-3 tracking-tight">
+                <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">Chemistry and ICT Care</span>
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text mb-4">by Belal Sir</h2>
+            <p class="text-lg text-cyan-400 font-semibold mb-2">Expert Coaching Center</p>
+            <p class="text-xl font-bold mb-3 text-blue-200" style="font-family: 'Noto Sans Bengali', sans-serif;">কেমিস্ট্রি এন্ড আইসিটি কেয়ার বাই বেলাল স্যার</p>
+            <p class="text-base text-slate-300 max-w-3xl mx-auto leading-relaxed">Unlock the mysteries of Chemistry and master Information & Communication Technology</p>
         </div>
 
-        <!-- Service Cards -->
-        <div class="grid md:grid-cols-3 gap-8 mb-16">
-            <!-- Mathematics Excellence -->
-            <div class="bg-white rounded-2xl p-8 shadow-xl text-center hover:transform hover:scale-105 transition-all duration-300">
-                <div class="bg-blue-600 p-4 rounded-xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                    <i class="fas fa-calculator text-white text-2xl"></i>
-                </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Mathematics Excellence</h3>
-                <p class="text-gray-600">Special training in mathematics with excellence and simplicity</p>
+        <!-- Courses Section -->
+        <div class="mb-12">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl md:text-5xl font-black text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text mb-3">
+                    আমাদের কোর্সসমূহ
+                </h2>
+                <p class="text-xl text-cyan-400 font-semibold">Our Premium Courses</p>
             </div>
 
-            <!-- Science Education -->
-            <div class="bg-white rounded-2xl p-8 shadow-xl text-center hover:transform hover:scale-105 transition-all duration-300">
-                <div class="bg-green-600 p-4 rounded-xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
-                    <i class="fas fa-flask text-white text-2xl"></i>
+            <!-- SSC & HSC Chemistry Courses -->
+            <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                
+                <!-- SSC Chemistry (9-10) -->
+                <div class="course-card group">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-blue-700 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        <div class="relative bg-gradient-to-br from-slate-800/95 to-slate-700/95 rounded-2xl p-6 border border-cyan-500/40 shadow-xl backdrop-blur-sm">
+                            <div class="text-center mb-5">
+                                <div class="inline-block bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-4 mb-4 shadow-lg transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-flask text-white text-4xl"></i>
+                                </div>
+                                <h3 class="text-3xl font-black text-transparent bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text mb-2">এসএসসি রসায়ন</h3>
+                                <p class="text-xl text-cyan-400 font-bold">SSC Chemistry</p>
+                                <p class="text-base text-slate-300 mt-1">Class 9-10</p>
+                                <div class="inline-block bg-cyan-500/20 rounded-full px-6 py-2 mt-3 border border-cyan-400/50">
+                                    <p class="text-cyan-300 font-semibold">📚 বাংলাদেশ শিক্ষা বোর্ড সিলেবাস</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <div class="bg-slate-800/60 rounded-xl p-4 backdrop-blur-sm border border-cyan-500/30 hover:border-cyan-400/60 transition-all text-center">
+                                    <h4 class="text-cyan-400 font-bold text-lg mb-1">SSC Chemistry Syllabus</h4>
+                                    <p class="text-slate-300 text-sm">Complete Board Curriculum</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-cyan-600 to-blue-700 rounded-lg p-3 text-center shadow-md hover:shadow-cyan-500/20 transition-all">
+                                <i class="fas fa-phone text-white text-lg mb-1"></i>
+                                <p class="text-white font-semibold text-sm">যোগাযোগ: 01734285995</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Science Education</h3>
-                <p class="text-gray-600">Complete courses in Physics, Chemistry and Biology</p>
+
+                <!-- HSC Chemistry (11-12) -->
+                <div class="course-card group">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-700 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        <div class="relative bg-gradient-to-br from-slate-800/95 to-slate-700/95 rounded-2xl p-6 border border-purple-500/40 shadow-xl backdrop-blur-sm">
+                            <div class="text-center mb-5">
+                                <div class="inline-block bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-4 mb-4 shadow-lg transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-atom text-white text-4xl"></i>
+                                </div>
+                                <h3 class="text-3xl font-black text-transparent bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text mb-2">এইচএসসি রসায়ন</h3>
+                                <p class="text-xl text-purple-400 font-bold">HSC Chemistry</p>
+                                <p class="text-base text-slate-300 mt-1">Class 11-12</p>
+                                <div class="inline-block bg-purple-500/20 rounded-full px-6 py-2 mt-3 border border-purple-400/50">
+                                    <p class="text-purple-300 font-semibold">🎓 বিশ্ববিদ্যালয় ভর্তি প্রস্তুতি সহ</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <div class="bg-slate-800/60 rounded-xl p-4 backdrop-blur-sm border border-purple-500/30 hover:border-purple-400/60 transition-all text-center">
+                                    <h4 class="text-purple-400 font-bold text-lg mb-1">HSC Chemistry Syllabus</h4>
+                                    <p class="text-slate-300 text-sm">Complete Board + University Admission</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-600 to-pink-700 rounded-lg p-3 text-center shadow-md hover:shadow-purple-500/20 transition-all">
+                                <i class="fas fa-phone text-white text-lg mb-1"></i>
+                                <p class="text-white font-semibold text-sm">যোগাযোগ: 01734285995</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Goal Achievement -->
-            <div class="bg-white rounded-2xl p-8 shadow-xl text-center hover:transform hover:scale-105 transition-all duration-300">
-                <div class="bg-orange-600 p-4 rounded-xl w-16 h-16 mx-auto mb-6 flex items-center justify-center">
+            <!-- ICT Course -->
+            <div class="max-w-2xl mx-auto">
+                <div class="course-card group">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-emerald-600 to-teal-700 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+                        <div class="relative bg-gradient-to-br from-slate-800/95 to-slate-700/95 rounded-2xl p-6 border border-emerald-500/40 shadow-xl backdrop-blur-sm">
+                            <div class="text-center mb-5">
+                                <div class="inline-block bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-4 mb-4 shadow-lg transform group-hover:scale-105 transition-transform">
+                                    <i class="fas fa-laptop-code text-white text-4xl"></i>
+                                </div>
+                                <h3 class="text-3xl font-black text-transparent bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text mb-2">তথ্য ও যোগাযোগ প্রযুক্তি</h3>
+                                <p class="text-xl text-emerald-400 font-bold">Information & Communication Technology</p>
+                                <p class="text-base text-slate-300 mt-1">SSC & HSC (Class 9-12)</p>
+                                <div class="inline-block bg-emerald-500/20 rounded-full px-6 py-2 mt-3 border border-emerald-400/50">
+                                    <p class="text-emerald-300 font-semibold">📱 Complete ICT Curriculum</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-5">
+                                <div class="bg-slate-800/60 rounded-xl p-4 backdrop-blur-sm border border-emerald-500/30 hover:border-emerald-400/60 transition-all text-center">
+                                    <h4 class="text-emerald-400 font-bold text-lg mb-1">SSC & HSC ICT Syllabus</h4>
+                                    <p class="text-slate-300 text-sm">Theory + Practical Programming</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-emerald-600 to-teal-700 rounded-lg p-3 text-center shadow-md hover:shadow-emerald-500/20 transition-all">
+                                <i class="fas fa-phone text-white text-lg mb-1"></i>
+                                <p class="text-white font-semibold text-sm">যোগাযোগ: 01734285995</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="grid md:grid-cols-4 gap-5 mb-12">
+            <div class="feature-card bg-slate-800/50 backdrop-blur-lg rounded-xl p-5 text-center border-2 border-cyan-500/30 hover:border-cyan-400 hover:bg-slate-700/50 transition-all duration-300 shadow-lg group">
+                <div class="bg-gradient-to-br from-cyan-400 to-blue-500 p-3 rounded-xl w-16 h-16 mx-auto mb-3 flex items-center justify-center shadow-xl group-hover:scale-105 transition-transform">
+                    <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-cyan-300 mb-1">বিশেষজ্ঞ শিক্ষক</h3>
+                <p class="text-slate-300 text-sm font-medium">২২+ বছরের অভিজ্ঞতা</p>
+            </div>
+
+            <div class="feature-card bg-slate-800/50 backdrop-blur-lg rounded-xl p-5 text-center border-2 border-green-500/30 hover:border-green-400 hover:bg-slate-700/50 transition-all duration-300 shadow-lg group">
+                <div class="bg-gradient-to-br from-green-400 to-emerald-500 p-3 rounded-xl w-16 h-16 mx-auto mb-3 flex items-center justify-center shadow-xl group-hover:scale-105 transition-transform">
+                    <i class="fas fa-laptop text-white text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-green-300 mb-1">আধুনিক পদ্ধতি</h3>
+                <p class="text-slate-300 text-sm font-medium">অনলাইন ও অফলাইন ক্লাস</p>
+            </div>
+
+            <div class="feature-card bg-slate-800/50 backdrop-blur-lg rounded-xl p-5 text-center border-2 border-yellow-500/30 hover:border-yellow-400 hover:bg-slate-700/50 transition-all duration-300 shadow-lg group">
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-500 p-3 rounded-xl w-16 h-16 mx-auto mb-3 flex items-center justify-center shadow-xl group-hover:scale-105 transition-transform">
                     <i class="fas fa-trophy text-white text-2xl"></i>
                 </div>
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Goal Achievement</h3>
-                <p class="text-gray-600">Guarantee of highest results in examinations</p>
+                <h3 class="text-lg font-bold text-yellow-300 mb-1">সর্বোচ্চ ফলাফল</h3>
+                <p class="text-slate-300 text-sm font-medium">A+ গ্রেড নিশ্চয়তা</p>
+            </div>
+            
+            <div class="feature-card bg-slate-800/50 backdrop-blur-lg rounded-xl p-5 text-center border-2 border-purple-500/30 hover:border-purple-400 hover:bg-slate-700/50 transition-all duration-300 shadow-lg group">
+                <div class="bg-gradient-to-br from-purple-400 to-pink-500 p-3 rounded-xl w-16 h-16 mx-auto mb-3 flex items-center justify-center shadow-xl group-hover:scale-105 transition-transform">
+                    <i class="fas fa-flask text-white text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-purple-300 mb-1">ল্যাব সুবিধা</h3>
+                <p class="text-slate-300 text-sm font-medium">ব্যবহারিক পরীক্ষা প্রস্তুতি</p>
             </div>
         </div>
 
@@ -76,15 +247,51 @@
         </div>
 
         <!-- Call to Action -->
-        <div class="text-center">
-            <p class="text-xl text-white mb-8">Ready to start your journey in Mathematics & Science?</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="openLoginModal('student')" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-user-graduate mr-3"></i>Student Login
-                </button>
-                <button onclick="openLoginModal('teacher')" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-white hover:bg-blue-50">
-                    <i class="fas fa-chalkboard-teacher mr-3"></i>Teacher Login
-                </button>
+        <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-2xl blur-xl"></div>
+            <div class="relative bg-slate-800/70 backdrop-blur-xl rounded-2xl p-10 border-2 border-cyan-500/30 shadow-2xl">
+                <div class="text-center mb-8">
+                    <h2 class="text-4xl md:text-5xl font-black mb-3">
+                        <span class="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">আজই ভর্তি হন!</span>
+                    </h2>
+                    <p class="text-xl text-cyan-300 font-bold mb-2" style="font-family: 'Noto Sans Bengali', sans-serif;">রসায়ন ও আইসিটিতে আপনার সফলতার যাত্রা শুরু করুন</p>
+                    <p class="text-lg text-slate-300 font-medium">Start Your Journey to Success in Chemistry & ICT Today!</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-5 justify-center items-center">
+                    <button onclick="openLoginModal('student')" class="group relative overflow-hidden bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-600 hover:via-blue-700 hover:to-purple-700 text-white px-10 py-5 rounded-xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        <div class="relative flex items-center z-10">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-user-graduate text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-base font-black">Student Login</div>
+                                <div class="text-sm font-normal opacity-90">শিক্ষার্থী লগইন</div>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button onclick="openLoginModal('teacher')" class="group relative overflow-hidden bg-white hover:bg-slate-100 text-slate-900 px-10 py-5 rounded-xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-105 border-2 border-cyan-400">
+                        <div class="relative flex items-center z-10">
+                            <div class="bg-cyan-500 p-2 rounded-lg mr-3">
+                                <i class="fas fa-chalkboard-teacher text-white text-xl"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="text-base font-black">Teacher Login</div>
+                                <div class="text-sm font-normal opacity-75">শিক্ষক লগইন</div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <div class="inline-block bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg px-4 py-2 border border-cyan-400/40">
+                        <p class="text-cyan-300 text-base font-semibold">
+                            <i class="fas fa-phone text-cyan-300 mr-2"></i>
+                            যোগাযোগ: 01734285995
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -248,65 +455,105 @@ document.getElementById('loginModal').addEventListener('click', function(e) {
 </script>
 
     <!-- About Section -->
-    <div class="bg-white py-16">
+    <div class="bg-gradient-to-br from-gray-50 to-blue-50 py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Meet Our Founder</h2>
-                <p class="text-lg text-blue-600 font-semibold">Excellence in Education</p>
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-user-tie text-blue-600 mr-3"></i>
+                    আমাদের প্রতিষ্ঠাতা
+                </h2>
+                <p class="text-xl text-blue-600 font-semibold">Meet Our Founder</p>
+                <p class="text-lg text-gray-600 mt-2">রসায়ন ও আইসিটি শিক্ষায় উৎকর্ষতা</p>
             </div>
             
-            <div class="bg-gradient-to-r from-blue-50 to-white rounded-3xl shadow-xl p-8 max-w-4xl mx-auto">
-                <div class="flex flex-col lg:flex-row items-center gap-8">
+            <div class="bg-white rounded-3xl shadow-2xl p-8 max-w-5xl mx-auto border-2 border-blue-100">
+                <div class="flex flex-col lg:flex-row items-center gap-10">
                     <div class="flex-shrink-0">
-                        <div class="w-48 h-48 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-                            <i class="fas fa-user text-white text-6xl"></i>
+                        <div class="relative">
+                            <div class="w-56 h-56 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl transform hover:scale-105 transition-all duration-300">
+                                <i class="fas fa-user text-white text-8xl"></i>
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl px-6 py-3 shadow-xl">
+                                <p class="text-white font-bold">২২+ বছরের অভিজ্ঞতা</p>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="flex-1 text-center lg:text-left">
-                        <h3 class="text-3xl font-bold text-gray-800 mb-2">Golam Sarowar Sir</h3>
-                        <p class="text-xl text-green-600 font-semibold mb-4">Mathematics & Science Expert</p>
+                        <h3 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">মোঃ বেলাল হোসেন</h3>
+                        <p class="text-2xl text-green-600 font-bold mb-2">Md. Belal Hosen</p>
+                        <p class="text-xl text-gray-700 font-semibold mb-1">প্রভাষক (রসায়ন)</p>
+                        <p class="text-lg text-gray-600 mb-6">জাতীয়পুর সরকারি বালিকা বিদ্যালয় ও কলেজ</p>
                         
-                        <div class="space-y-3 mb-6">
-                            <div class="flex items-center justify-center lg:justify-start">
-                                <div class="bg-blue-600 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-graduation-cap text-white"></i>
+                        <div class="grid md:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center justify-center lg:justify-start bg-blue-50 rounded-xl p-4">
+                                <div class="bg-blue-600 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-calendar text-white text-xl"></i>
                                 </div>
-                                <span class="text-gray-700">Mathematics & Science Teacher - 20+ Years Experience</span>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-600">জন্ম তারিখ</p>
+                                    <p class="text-gray-800 font-semibold">১১/১১/১৯৭৭</p>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center justify-center lg:justify-start">
-                                <div class="bg-green-600 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-users text-white"></i>
+                            <div class="flex items-center justify-center lg:justify-start bg-green-50 rounded-xl p-4">
+                                <div class="bg-green-600 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-phone text-white text-xl"></i>
                                 </div>
-                                <span class="text-gray-700">Mathematics & Science Expert</span>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-600">মোবাইল</p>
+                                    <p class="text-gray-800 font-semibold">01734285995</p>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center justify-center lg:justify-start">
-                                <div class="bg-orange-600 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-school text-white"></i>
+                            <div class="flex items-center justify-center lg:justify-start bg-purple-50 rounded-xl p-4">
+                                <div class="bg-purple-600 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-envelope text-white text-xl"></i>
                                 </div>
-                                <span class="text-gray-700">Assistant Math Teacher at Mohadebpur Sarba Mongala Pilot High School, Mohadevpur, Naogaon</span>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-600">ইমেইল</p>
+                                    <p class="text-gray-800 font-semibold text-sm">mbhossain430@gmail.com</p>
+                                </div>
                             </div>
                             
-                            <div class="flex items-center justify-center lg:justify-start">
-                                <div class="bg-purple-600 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-award text-white"></i>
+                            <div class="flex items-center justify-center lg:justify-start bg-orange-50 rounded-xl p-4">
+                                <div class="bg-orange-600 p-3 rounded-lg mr-3">
+                                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
                                 </div>
-                                <span class="text-gray-700">5000+ Successful Students</span>
-                            </div>
-                            
-                            <div class="flex items-center justify-center lg:justify-start">
-                                <div class="bg-green-600 p-2 rounded-lg mr-3">
-                                    <i class="fas fa-phone text-white"></i>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-600">ঠিকানা</p>
+                                    <p class="text-gray-800 font-semibold">মহাদেবপুর, নওগাঁ</p>
                                 </div>
-                                <span class="text-gray-700">01762602056</span>
                             </div>
                         </div>
                         
-                        <div class="bg-blue-100 p-6 rounded-xl">
-                            <p class="text-blue-800 italic leading-relaxed">
-                                "With years of experience in Mathematics and Science education, I am committed to providing students with the knowledge and skills they need to excel in their academic journey. My goal is to make complex mathematical and scientific concepts accessible and engaging for every student."
+                        <div class="grid md:grid-cols-2 gap-4 mb-8">
+                            <div class="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-5 text-white shadow-lg transform hover:scale-105 transition-all">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-flask text-2xl mr-3"></i>
+                                    <p class="font-bold text-lg">রসায়ন বিশেষজ্ঞ</p>
+                                </div>
+                                <p class="text-sm opacity-90">Chemistry Expert</p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-5 text-white shadow-lg transform hover:scale-105 transition-all">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-laptop-code text-2xl mr-3"></i>
+                                    <p class="font-bold text-lg">আইসিটি প্রশিক্ষক</p>
+                                </div>
+                                <p class="text-sm opacity-90">ICT Instructor</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-2xl border-2 border-blue-200">
+                            <div class="flex items-start mb-3">
+                                <i class="fas fa-quote-left text-blue-600 text-2xl mr-3 mt-1"></i>
+                                <p class="text-gray-700 italic leading-relaxed text-lg">
+                                    "রসায়নের রহস্য উন্মোচন করুন এবং তথ্য ও যোগাযোগ প্রযুক্তিতে দক্ষতা অর্জন করুন অত্যাধুনিক বৈজ্ঞানিক শিক্ষা ও ব্যক্তিগত নির্দেশনার মাধ্যমে।"
+                                </p>
+                            </div>
+                            <p class="text-gray-600 text-base mt-4 leading-relaxed">
+                                Unlock the mysteries of Chemistry and master Information & Communication Technology with cutting-edge scientific education and personalized guidance.
                             </p>
                         </div>
                     </div>
@@ -320,13 +567,14 @@ document.getElementById('loginModal').addEventListener('click', function(e) {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="flex items-center justify-center mb-4">
                 <div class="bg-blue-600 p-2 rounded-lg mr-3">
-                    <i class="fas fa-graduation-cap text-white"></i>
+                    <i class="fas fa-flask text-white"></i>
                 </div>
-                <h3 class="text-xl font-bold">GS Student Nursing Center by Golam Sarowar Sir</h3>
+                <h3 class="text-xl font-bold">Chemistry and ICT Care by Belal Sir</h3>
             </div>
-            <p class="text-gray-400 mb-2">Excellence in Mathematics & Science Education</p>
+            <p class="text-gray-400 mb-2">কেমিস্ট্রি এন্ড আইসিটি কেয়ার বাই বেলাল স্যার</p>
+            <p class="text-gray-400 mb-2">Expert Coaching Center - Bangladesh</p>
             <p class="text-gray-400 mb-4">
-                <i class="fas fa-phone mr-2"></i>01762602056
+                <i class="fas fa-phone mr-2"></i>01734285995
             </p>
             <p class="text-gray-500 text-sm mb-2">© 2025 All Rights Reserved</p>
             <p class="text-gray-400 text-sm">

@@ -38,7 +38,7 @@ try:
     print("   Admin: 01712345678 / admin123")
     print("")
     print("📝 Note: Students login with their PARENT PHONE NUMBER + unique generated password")
-    print("🏫 GS Student Nursing Center by Golam Sarowar Sir - Mathematics & Science Coaching Center")
+    print("🏫 Chemistry and ICT Care by Belal Sir - Expert Coaching Center")
     print("=" * 50)
     
     app.run(

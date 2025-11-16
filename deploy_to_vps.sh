@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Deployment script for GS Student Nursing Center
+# Deployment script for Chemistry and ICT Care by Belal Sir
 # This script pulls latest code and restarts the Flask service
 
 echo "════════════════════════════════════════════════════════════"
-echo "  🚀 DEPLOYING TO VPS - GS Student Nursing Center"
+echo "  🚀 DEPLOYING TO VPS - Chemistry and ICT Care"
 echo "════════════════════════════════════════════════════════════"
 echo ""
 

@@ -38,7 +38,7 @@ def main():
             exam_template = SmsTemplate(
                 name='Exam Result Notification',
                 subject='Exam Result',
-                content='প্রিয় অভিভাবক, আপনার সন্তান {student_name} এর {subject} ({exam_title}) এ নম্বর: {marks_obtained}/{total_marks} ({percentage}) - গ্রেড: {grade}। GS Student Nursing Center',
+                content='প্রিয় অভিভাবু, আপনার সন্তান {student_name} এর {subject} ({exam_title}) এ নম্বর: {marks_obtained}/{total_marks} ({percentage}) - গ্রেড: {grade}। Chemistry and ICT Care by Belal Sir',
                 variables=['student_name', 'subject', 'exam_title', 'marks_obtained', 'total_marks', 'percentage', 'grade'],
                 category='exam',
                 is_active=True,

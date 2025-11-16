@@ -135,7 +135,7 @@ PRODUCTION = {
 ### 4. `saro_vps.service`
 ```ini
 [Unit]
-Description=GS Student Nursing Center Application
+Description=Chemistry and ICT Care Application
 After=network.target
 
 [Service]

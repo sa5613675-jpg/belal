@@ -34,10 +34,14 @@ class ProductionConfig(Config):
     DEBUG = False
     
     # SQLite database for production
-    # Using absolute path for VPS deployment at /var/www/saroyarsir
-    SQLALCHEMY_DATABASE_URI = "sqlite:////var/www/saroyarsir/smartgardenhub.db"
+    # Using absolute path for VPS deployment at /var/www/chemict
+    SQLALCHEMY_DATABASE_URI = "sqlite:////var/www/chemict/smartgardenhub.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    
+    # Server configuration for chemict.com on port 8006
+    SERVER_NAME = None  # Let nginx handle the domain
+    PREFERRED_URL_SCHEME = 'https'
 
 config_by_name = {
     'development': DevelopmentConfig,
