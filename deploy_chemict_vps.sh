@@ -116,11 +116,24 @@ sudo systemctl daemon-reload
 sudo systemctl enable $SERVICE_NAME
 
 echo -e "${BLUE}Step 10: Setting up Nginx configuration...${NC}"
-sudo cp nginx_chemict.conf /etc/nginx/sites-available/$DOMAIN
+# Use HTTP-only config first, then upgrade to HTTPS with certbot
+if [ -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
+    echo "SSL certificate exists, using HTTPS config..."
+    sudo cp nginx_chemict.conf /etc/nginx/sites-available/$DOMAIN
+else
+    echo "No SSL certificate yet, using HTTP-only config..."
+    sudo cp nginx_chemict_http_only.conf /etc/nginx/sites-available/$DOMAIN
+fi
+
 sudo ln -sf /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
 
 # Test nginx configuration
-sudo nginx -t
+if sudo nginx -t; then
+    echo -e "${GREEN}✅ Nginx configuration valid${NC}"
+else
+    echo -e "${RED}❌ Nginx configuration test failed${NC}"
+    exit 1
+fi
 
 echo -e "${BLUE}Step 11: Configuring firewall...${NC}"
 sudo ufw allow 80/tcp 2>/dev/null || true

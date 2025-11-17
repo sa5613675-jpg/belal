@@ -60,11 +60,24 @@ systemctl daemon-reload
 systemctl enable chemict
 
 echo -e "${BLUE}[6/8] Installing Nginx configuration...${NC}"
-cp nginx_chemict.conf /etc/nginx/sites-available/chemict.com
+# Use HTTP-only config first, then upgrade to HTTPS with certbot
+if [ -f "/etc/letsencrypt/live/chemict.com/fullchain.pem" ]; then
+    echo "SSL certificate exists, using HTTPS config..."
+    cp nginx_chemict.conf /etc/nginx/sites-available/chemict.com
+else
+    echo "No SSL certificate yet, using HTTP-only config..."
+    cp nginx_chemict_http_only.conf /etc/nginx/sites-available/chemict.com
+fi
+
 ln -sf /etc/nginx/sites-available/chemict.com /etc/nginx/sites-enabled/
 
 # Test nginx config
-nginx -t
+if nginx -t; then
+    echo -e "${GREEN}✅ Nginx configuration valid${NC}"
+else
+    echo -e "${RED}❌ Nginx configuration failed${NC}"
+    exit 1
+fi
 
 echo -e "${BLUE}[7/8] Setting permissions...${NC}"
 chmod 664 smartgardenhub.db 2>/dev/null || true
@@ -94,17 +107,19 @@ echo -e "${YELLOW}🌐 Access URLs:${NC}"
 echo "   Local: http://localhost:8006"
 SERVER_IP=$(curl -s ifconfig.me 2>/dev/null || hostname -I | awk '{print $1}')
 echo "   IP: http://$SERVER_IP:8006"
-echo "   Domain: https://chemict.com (after SSL)"
+echo "   Domain: http://chemict.com (HTTP only for now)"
 echo ""
 echo -e "${YELLOW}📊 Service Commands:${NC}"
 echo "   Status:  systemctl status chemict"
 echo "   Logs:    journalctl -u chemict -f"
 echo "   Restart: systemctl restart chemict"
 echo ""
-echo -e "${YELLOW}🔒 Get SSL Certificate:${NC}"
+echo -e "${YELLOW}🔒 Enable HTTPS (run after DNS is configured):${NC}"
 echo "   certbot --nginx -d chemict.com -d www.chemict.com"
+echo "   Then re-run this script to update nginx config"
 echo ""
 echo -e "${YELLOW}✅ Test Health:${NC}"
 echo "   curl http://localhost:8006/health"
+echo "   curl http://chemict.com/health"
 echo ""
 echo "=========================================="
