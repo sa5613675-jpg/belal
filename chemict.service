@@ -10,7 +10,7 @@ WorkingDirectory=/var/www/chemict
 Environment="PATH=/var/www/chemict/venv/bin"
 Environment="FLASK_ENV=production"
 Environment="PORT=8006"
-ExecStart=/var/www/chemict/venv/bin/gunicorn --workers 4 --bind 127.0.0.1:8006 --timeout 120 --access-logfile /var/www/chemict/logs/access.log --error-logfile /var/www/chemict/logs/error.log wsgi:app
+ExecStart=/var/www/chemict/venv/bin/gunicorn --workers 4 --bind 0.0.0.0:8006 --timeout 120 --access-logfile /var/www/chemict/logs/access.log --error-logfile /var/www/chemict/logs/error.log wsgi:app
 Restart=always
 RestartSec=10
 

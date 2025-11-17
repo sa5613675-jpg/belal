@@ -30,10 +30,14 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Check if running as root
+# Check if running as root - allow but warn
 if [ "$EUID" -eq 0 ]; then 
-    echo -e "${RED}Please do not run as root. Run as regular user with sudo privileges.${NC}"
-    exit 1
+    echo -e "${YELLOW}Warning: Running as root. This is not recommended but will proceed.${NC}"
+    APP_USER="root"
+    SKIP_CHOWN=true
+else
+    APP_USER="www-data"
+    SKIP_CHOWN=false
 fi
 
 echo -e "${BLUE}Step 1: Installing system dependencies...${NC}"
@@ -43,14 +47,20 @@ sudo apt install -y python3 python3-pip python3-venv nginx certbot python3-certb
 echo -e "${BLUE}Step 2: Creating application directory...${NC}"
 sudo mkdir -p $APP_DIR
 sudo mkdir -p $APP_DIR/logs
-sudo chown -R $USER:$USER $APP_DIR
+
+if [ "$SKIP_CHOWN" = false ]; then
+    sudo chown -R $USER:$USER $APP_DIR
+fi
 
 echo -e "${BLUE}Step 3: Copying application files...${NC}"
-# Copy all files from current directory to app directory
-cp -r * $APP_DIR/ 2>/dev/null || true
-cp -r .* $APP_DIR/ 2>/dev/null || true
-
-cd $APP_DIR
+# Files are already in place if running from /var/www/chemict
+if [ "$PWD" != "$APP_DIR" ]; then
+    cp -r * $APP_DIR/ 2>/dev/null || true
+    cp -r .* $APP_DIR/ 2>/dev/null || true
+    cd $APP_DIR
+else
+    echo "Already in application directory, skipping copy..."
+fi
 
 echo -e "${BLUE}Step 4: Setting up Python virtual environment...${NC}"
 python3 -m venv venv
@@ -87,11 +97,18 @@ else
 fi
 
 echo -e "${BLUE}Step 8: Setting file permissions...${NC}"
-sudo chown -R www-data:www-data $APP_DIR
-sudo chmod -R 755 $APP_DIR
-sudo chmod 664 $APP_DIR/smartgardenhub.db 2>/dev/null || true
-sudo chown www-data:www-data $APP_DIR/smartgardenhub.db 2>/dev/null || true
-sudo chmod -R 775 $APP_DIR/logs
+if [ "$SKIP_CHOWN" = false ]; then
+    sudo chown -R www-data:www-data $APP_DIR
+    sudo chmod -R 755 $APP_DIR
+    sudo chmod 664 $APP_DIR/smartgardenhub.db 2>/dev/null || true
+    sudo chown www-data:www-data $APP_DIR/smartgardenhub.db 2>/dev/null || true
+    sudo chmod -R 775 $APP_DIR/logs
+else
+    echo "Running as root, skipping permission changes..."
+    chmod -R 755 $APP_DIR
+    chmod 664 $APP_DIR/smartgardenhub.db 2>/dev/null || true
+    chmod -R 775 $APP_DIR/logs
+fi
 
 echo -e "${BLUE}Step 9: Setting up systemd service...${NC}"
 sudo cp chemict.service /etc/systemd/system/
