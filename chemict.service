@@ -1,0 +1,18 @@
+[Unit]
+Description=Chemistry and ICT Care Flask Application (chemict.com)
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/chemict
+Environment="PATH=/var/www/chemict/venv/bin"
+Environment="FLASK_ENV=production"
+Environment="PORT=8006"
+ExecStart=/var/www/chemict/venv/bin/gunicorn --workers 4 --bind 127.0.0.1:8006 --timeout 120 --access-logfile /var/www/chemict/logs/access.log --error-logfile /var/www/chemict/logs/error.log wsgi:app
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

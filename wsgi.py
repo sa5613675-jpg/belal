@@ -14,4 +14,4 @@ if __name__ == "__main__":
         db.create_all()
         print("Database tables created successfully!")
     
-    app.run(host='0.0.0.0', port=8001, debug=False)
+    app.run(host='0.0.0.0', port=8006, debug=False)

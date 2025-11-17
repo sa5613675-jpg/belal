@@ -1,0 +1,156 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                     CHEMICT.COM VPS DEPLOYMENT REFERENCE                     ║
+║                          Chemistry & ICT Care System                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DEPLOYMENT CONFIGURATION                                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+Domain:          chemict.com, www.chemict.com
+Port (Internal): 8006
+Port (External): 80 (HTTP), 443 (HTTPS)
+Path:            /var/www/chemict
+Service:         chemict.service
+Database:        SQLite (/var/www/chemict/smartgardenhub.db)
+User:            www-data
+Workers:         4 Gunicorn workers
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ QUICK DEPLOYMENT (3 STEPS)                                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+1. Transfer files to VPS:
+   scp -r * user@YOUR_VPS_IP:/tmp/chemict/
+
+2. Run on VPS:
+   ./deploy_chemict_vps.sh
+
+3. Get SSL certificate:
+   sudo certbot --nginx -d chemict.com -d www.chemict.com
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DEFAULT CREDENTIALS                                                          │
+└──────────────────────────────────────────────────────────────────────────────┘
+Teacher (Belal Sir):  01734285995 / sir@123@
+Admin Account:        01818291546 / sir@123@
+
+⚠️  CHANGE PASSWORDS AFTER FIRST LOGIN!
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ESSENTIAL COMMANDS                                                           │
+└──────────────────────────────────────────────────────────────────────────────┘
+Service Control:
+  sudo systemctl status chemict        # Check status
+  sudo systemctl restart chemict       # Restart app
+  sudo systemctl stop chemict          # Stop app
+  sudo systemctl start chemict         # Start app
+
+View Logs:
+  sudo journalctl -u chemict -f        # Live service logs
+  tail -f /var/www/chemict/logs/access.log
+  tail -f /var/www/chemict/logs/error.log
+
+Health Checks:
+  curl http://localhost:8006/health    # Local health check
+  curl https://chemict.com/health      # External health check
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ TESTING & VERIFICATION                                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+Before Deploy:  ./check_deployment_ready.sh
+After Deploy:   ./test_deployment.sh
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ TROUBLESHOOTING                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+Service Won't Start:
+  sudo journalctl -u chemict -n 50
+  sudo systemctl status chemict
+
+Permission Errors:
+  sudo chown -R www-data:www-data /var/www/chemict
+  sudo chmod 664 /var/www/chemict/smartgardenhub.db
+
+Port Already In Use:
+  sudo lsof -i :8006
+  sudo systemctl stop chemict
+
+Database Issues:
+  ls -lh /var/www/chemict/smartgardenhub.db
+  sudo chown www-data:www-data /var/www/chemict/smartgardenhub.db
+
+Nginx Problems:
+  sudo nginx -t
+  sudo systemctl restart nginx
+  tail -f /var/log/nginx/error.log
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ DNS CONFIGURATION                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+Add these records to your domain registrar:
+
+Type    Host    Value           TTL
+A       @       YOUR_VPS_IP     3600
+A       www     YOUR_VPS_IP     3600
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ SSL CERTIFICATE                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+Get Certificate:
+  sudo certbot --nginx -d chemict.com -d www.chemict.com
+
+Test Auto-Renewal:
+  sudo certbot renew --dry-run
+
+Manual Renewal:
+  sudo certbot renew
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ BACKUP & MAINTENANCE                                                         │
+└──────────────────────────────────────────────────────────────────────────────┘
+Backup Database:
+  cp /var/www/chemict/smartgardenhub.db \
+     /var/www/chemict/backup_$(date +%Y%m%d_%H%M%S).db
+
+Update Application:
+  cd /var/www/chemict
+  git pull origin main  # or copy new files
+  sudo systemctl restart chemict
+
+Monitor Resources:
+  htop
+  df -h
+  du -sh /var/www/chemict/*
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FIREWALL RULES                                                               │
+└──────────────────────────────────────────────────────────────────────────────┘
+  sudo ufw allow 80/tcp         # HTTP
+  sudo ufw allow 443/tcp        # HTTPS
+  sudo ufw allow 8006/tcp       # Direct access (optional)
+  sudo ufw status               # Check status
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FILES & DOCUMENTATION                                                        │
+└──────────────────────────────────────────────────────────────────────────────┘
+📄 CHEMICT_DEPLOYMENT_SUMMARY.md    # Complete deployment summary
+📄 CHEMICT_VPS_GUIDE.md             # Detailed VPS management guide
+📄 deploy_chemict_vps.sh            # Automated deployment script
+📄 check_deployment_ready.sh        # Pre-deployment verification
+📄 test_deployment.sh               # Post-deployment testing
+📄 nginx_chemict.conf               # Nginx configuration
+📄 chemict.service                  # Systemd service file
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ SUPPORT RESOURCES                                                            │
+└──────────────────────────────────────────────────────────────────────────────┘
+Application URL:  https://chemict.com
+Health Check:     https://chemict.com/health
+Database Check:   https://chemict.com/health/db
+
+Development Date: November 17, 2025
+Developer:        Belal Sir
+Version:          1.0.0
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          DEPLOYMENT READY! 🚀                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝

@@ -167,7 +167,7 @@ def create_app(config_name=None):
 
 if __name__ == '__main__':
     app = create_app()
-    port = int(os.environ.get('PORT', 8001))
+    port = int(os.environ.get('PORT', 8006))
     debug = os.environ.get('DEBUG', 'False').lower() == 'true'
     
     print(f"Starting SmartGardenHub on port {port}")
