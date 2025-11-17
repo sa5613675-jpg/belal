@@ -55,14 +55,18 @@ if [ "$choice" = "1" ]; then
     
 elif [ "$choice" = "2" ]; then
     echo ""
-    echo -e "${YELLOW}Warning: This will replace the current app${NC}"
-    read -p "Are you sure? (yes/no): " confirm
+    echo -e "${YELLOW}This will configure chemict.com to point to port 8006${NC}"
+    echo -e "${YELLOW}Other apps on different ports will NOT be affected${NC}"
+    read -p "Continue? (yes/no): " confirm
     
     if [ "$confirm" = "yes" ]; then
-        echo -e "${BLUE}Replacing with chemistry app...${NC}"
+        echo -e "${BLUE}Configuring chemict.com for port 8006...${NC}"
         
-        # Remove old config, add new
+        # Remove old chemict.com config only, keep other apps
         rm -f /etc/nginx/sites-enabled/chemict.com
+        rm -f /etc/nginx/sites-available/chemict.com
+        
+        # Add new config for port 8006
         cp nginx_chemict_http_only.conf /etc/nginx/sites-available/chemict.com
         ln -sf /etc/nginx/sites-available/chemict.com /etc/nginx/sites-enabled/
         
@@ -71,6 +75,8 @@ elif [ "$choice" = "2" ]; then
             systemctl reload nginx
             echo -e "${GREEN}✅ Done!${NC}"
             echo ""
+            echo "chemict.com now points to port 8006"
+            echo "Other apps on different ports are unaffected"
             echo "Access at: http://chemict.com"
         else
             echo -e "${RED}❌ Nginx config failed${NC}"

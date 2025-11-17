@@ -21,13 +21,11 @@ echo "Active configurations:"
 ls -la /etc/nginx/sites-enabled/ | grep -v "^total" | grep -v "^l.*default"
 echo ""
 
-echo -e "${BLUE}[2/6] Removing ALL conflicting configurations...${NC}"
-# Remove all configs that might be serving chemict.com
+echo -e "${BLUE}[2/6] Removing ONLY chemict.com configuration...${NC}"
+# Only remove chemict.com config, leave other apps untouched
 rm -f /etc/nginx/sites-enabled/chemict.com
-rm -f /etc/nginx/sites-enabled/gsteaching.com
-rm -f /etc/nginx/sites-enabled/nazipuruhs.com
 rm -f /etc/nginx/sites-available/chemict.com
-echo "✓ Old configs removed"
+echo "✓ Old chemict.com config removed (other apps untouched)"
 echo ""
 
 echo -e "${BLUE}[3/6] Installing fresh Chemistry app config...${NC}"
